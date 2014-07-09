@@ -117,7 +117,7 @@ void DuSMAgent::recv(Packet* p, Handler* h) {
 	struct hdr_dusm_data *hdr = HDR_DUSM_DATA(p);
 	// struct hdr_ip* ih = HDR_IP(p);
 
-	// fprintf(stderr, "pkt recv at %d, now is %lf.\n", addr_, Scheduler::instance().clock());
+	// fprintf(stderr, "pkt recv at %d, now is %lf, from (%d,%d), lasthop is %d.\n", addr_, Scheduler::instance().clock(), hdr->source_, hdr->seq_, hdr->lasthop_);
 	if (centralGC_.inGroup(addr_, hdr->group_)) {
 		// recv business
 		nsaddr_t group = hdr->group_;
@@ -201,6 +201,7 @@ void DuSMAgent::send2(nsaddr_t nexthop, int size, nsaddr_t source, nsaddr_t grou
 
 void DuSMAgent::send2(nsaddr_t nexthop, int size, nsaddr_t source, nsaddr_t group, int seq, bool tunnelFg, nsaddr_t tsrc, nsaddr_t tdest) {
 	// Create a new packet
+    // fprintf(stderr, "pkt sent from %d to %d.\n", addr_, nexthop);
 	connect2(nexthop);
 	Packet* p = allocpkt();
 	// Access the DuSM header for the new packet:
@@ -234,7 +235,7 @@ void DuSMAgent::send2(nsaddr_t nexthop, int size, nsaddr_t source, nsaddr_t grou
  *
  *************************************************************/
 
-const unsigned long GroupController::THRESHOLD = 0;
+const unsigned long GroupController::THRESHOLD = 100 * 1024;
 
 bool GroupController::inGroup(nsaddr_t node, nsaddr_t group) {
 	std::map< nsaddr_t, std::list<nsaddr_t> >& c = gcs_;
@@ -243,7 +244,6 @@ bool GroupController::inGroup(nsaddr_t node, nsaddr_t group) {
 }
 
 void GroupController::dumpGroup(nsaddr_t node, nsaddr_t group) {
-	std::map< nsaddr_t, std::list<nsaddr_t> >& c = gcs_;
 	std::list<nsaddr_t>& hostlist = gcs_[group];
 
 	fprintf(stderr, "dump -edge %d -group %d [", node, group);

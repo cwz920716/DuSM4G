@@ -23,8 +23,8 @@
 #include "cmu-trace.h"
 
 #define N_REPLICA 3
-#define GKPATH "/home/cwz/DuSM4G/test/gkid.txt"
-#define STPATH "/home/cwz/DuSM4G/test/ST%d.txt"
+#define GKPATH "/home/cwz/DuSM4G/rock6461/gkid.txt"
+#define STPATH "/home/cwz/DuSM4G/rock6461-ref/ST%d.txt"
 
 /*
  * This is the key for enhanced multicast state. 
