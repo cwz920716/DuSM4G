@@ -32,8 +32,8 @@ def nextchunk(left, total):
   else:
     return c
 
-nhost = 141
-fin = file('rock6461/group.txt', 'r');
+nhost = 315
+fin = file('rock1239/group.txt', 'r');
 grptfc = []
 ngroup = 0
 while True:
@@ -45,7 +45,7 @@ while True:
     grptfc.append(tfc)
     ngroup = ngroup + 1
 
-fin = file('rock6461/gkid.txt', 'r')
+fin = file('rock1239/gkid.txt', 'r')
 nline = int(fin.readline())
 kids = []
 for i in range(0, ngroup):

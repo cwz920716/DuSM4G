@@ -58,11 +58,11 @@ largest = largest + 1
 print 'for {set i 0} {$i < %d} {incr i} {' % nNode
 print '$ns at %f \"$d($i) dump-mcast\"' % largest
 print '}'
-'''
+
 for i in range(0, nEdge):
     print '$ns at %f \"$d(%s) dump-link-stat %s\"' % (largest, edges[i]['u'], edges[i]['v'])
     print '$ns at %f \"$d(%s) dump-link-stat %s\"' % (largest, edges[i]['v'], edges[i]['u'])
-'''
+
 
 print 
 print '$ns at %lf \"finish\"' % (largest + 1)

@@ -10,7 +10,7 @@ while True:
   print line,
 
 # Stage1: topology
-fin = file('rock6461.topo', 'r')
+fin = file('rock1239.topo', 'r')
 edges = []
 nEdge = 0
 nNode = 0
